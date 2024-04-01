@@ -13,15 +13,26 @@ type messageToSend struct {
 }
 
 type user struct {
-	name string
+	name allNames
 	number int
 }
 
+type allNames struct {
+	firstname string
+	lastname string
+}
+
 func canSendMessage(mToSend messageToSend) bool {
-	if mToSend.sender.name == "" {
+	if mToSend.sender.name.firstname == "" {
 		return false
 	}
-	if mToSend.recipient.name == "" {
+	if mToSend.sender.name.lastname == "" {
+		return false
+	}
+	if mToSend.recipient.name.firstname == "" {
+		return false
+	}
+	if mToSend.recipient.name.lastname == "" {
 		return false
 	}
 	if mToSend.sender.number == 0 {
@@ -44,17 +55,17 @@ func test(mToSend messageToSend) {
 func main() {
 	test(messageToSend{
 		message: "you have an appointment tommorow",
-		sender: user{name: "Carter", number: +255739683865},
-		recipient: user{name: "Tailor Jin", number: +255728694853},
+		sender: user{name: allNames{firstname: "Carter", lastname: "Smith"}, number: +255739683865},
+		recipient: user{name: allNames{firstname: "Tailor Jin"}, number: +255728694853},
 	})
 	test(messageToSend{
 		message: "you have an event tommorow",
-		sender: user{name: "Suzan", number: +255784926519},
-		recipient: user{name: "James Peter", number: +255793029346},
+		sender: user{name: allNames{firstname: "Suzan"}, number: +255784926519},
+		recipient: user{name: allNames{lastname: "James Peter"}, number: +255793029346},
 	})
 	test(messageToSend{
 		message: "you have a pary tommorow",
 		sender: user{number: +255638295723},
-		recipient: user{name: "Sally Sue"},
+		recipient: user{name: allNames{lastname: "Sally Sue"}},
 	})
 }

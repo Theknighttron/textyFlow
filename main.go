@@ -2,14 +2,28 @@ package main
 
 import "fmt"
 
-func main() {
-	sendsSoFar := 430
-	const sendsToAdd = 25
-	sendsSoFar = incrementSends(sendsSoFar, sendsToAdd)
-	fmt.Println("you've sent", sendsSoFar, "messages")
+// struct definition
+type messageToSend  struct{
+	PhoneNumber int
+	Message string
 }
 
-func incrementSends(sendsSoFar, sendsToAdd int) int {
-	sendsSoFar = sendsSoFar + sendsToAdd
-	return sendsSoFar
+func test(text messageToSend) {
+	fmt.Printf("Sending message: '%s' to: %v\n", text.Message, text.PhoneNumber)
+	fmt.Println("==================================")
+}
+
+func main() {
+	test(messageToSend{
+		PhoneNumber: +255621458592,
+		Message: "Thanks for signing up",
+	})
+	test(messageToSend{
+		PhoneNumber: +255741859302,
+		Message: "Love to have you aboard",
+	})
+	test(messageToSend{
+		PhoneNumber: +2557392869204,
+		Message: "We're so excited to have you",
+	})
 }

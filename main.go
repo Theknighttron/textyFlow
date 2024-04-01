@@ -2,11 +2,14 @@ package main
 
 import "fmt"
 
-func concat(s1 string, s2 string) string {
-	return s1 + s2
+func main() {
+	sendsSoFar := 430
+	const sendsToAdd = 25
+	sendsSoFar = incrementSends(sendsSoFar, sendsToAdd)
+	fmt.Println("you've sent", sendsSoFar, "messages")
 }
 
-func main() {
-	fmt.Println(concat("Hello", " world"))
-	fmt.Println(concat("Elon", " let's hop this tesla thing workout"))
+func incrementSends(sendsSoFar, sendsToAdd int) int {
+	sendsSoFar = sendsSoFar + sendsToAdd
+	return sendsSoFar
 }
